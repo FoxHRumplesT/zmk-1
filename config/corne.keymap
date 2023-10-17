@@ -43,13 +43,13 @@
             bindings = <
         //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
         //│  Q       │  W       │  E       │  R       │  T       │   │  Y       │  U       │  I       │  O       │  P       │
-            &kp Q      &kp W      &kp E      &kp R      &kp T          &kp Y      &kp U      &kp I      &kp O      &kp P
+  &trans    &kp Q      &kp W      &kp E      &kp R      &kp T          &kp Y      &kp U      &kp I      &kp O      &kp P       &trans
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
         //│  A       │  S       │  D       │  F       │  G       │   │  H       │  J       │  K       │  L       │BACKSPACE │
-            &kp A     HRML(S,         D,         F)     &kp G          &kp H      HRMR(J,        K,           L)   &kp BSPC
+  &trans    &kp A     HRML(S,         D,         F)     &kp G          &kp H      HRMR(J,        K,           L)   &kp BSPC    &trans
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
         //│  Z       │  X       │  C       │  V       │  B       │   │  N       │  M       │ , <      │ . >      │  ' ""    │
-            &kp Z      &kp X      &kp C      &kp V      &kp B          &kp N      &kp M      &kp COMMA  &kp DOT    &lt DQT SQT
+  &trans    &kp Z      &kp X      &kp C      &kp V      &kp B          &kp N      &kp M      &kp COMMA  &kp DOT    &lt DQT SQT &trans
         //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
                                  &kp LSHIFT &lt LEF TAB &kp SPACE     &kp ENTER  &lt RIG TAB &kp RCTRL
         //                      ╰──────────┴──────────┴──────────╯   ╰──────────┴──────────┴──────────╯
@@ -60,13 +60,13 @@
             bindings = <
         //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
         //│  Q       │  W       │  E       │  R       │  T       │   │  Y       │  U       │  I       │  O       │  P       │
-            &kp Q      &kp W      &kp E      &kp R      &kp T          &kp Y      &kp U      &kp I      &kp O      &kp P
+  &trans    &kp Q      &kp W      &kp E      &kp R      &kp T          &kp Y      &kp U      &kp I      &kp O      &kp P       &trans
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
         //│  A       │  S       │  D       │  F       │  G       │   │  H       │  J       │  K       │  L       │BACKSPACE │
-            &kp A    WHRML(S,         D,         F)     &kp G          &kp H      WHRMR(J,        K,         L)    &kp BSPC
+  &trans    &kp A    WHRML(S,         D,         F)     &kp G          &kp H      WHRMR(J,        K,         L)    &kp BSPC    &trans
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
         //│  Z       │  X       │  C       │  V       │  B       │   │  N       │  M       │ , <      │ . >      │  ' ""    │
-            &kp Z      &kp X      &kp C      &kp V      &kp B          &kp N      &kp M      &kp COMMA  &kp DOT    &lt DQT SQT
+  &trans    &kp Z      &kp X      &kp C      &kp V      &kp B          &kp N      &kp M      &kp COMMA  &kp DOT    &lt DQT SQT &trans
         //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
                                  &kp LSHIFT &lt LEF TAB &kp SPACE    &kp ENTER  &lt RIG TAB  &kp RGUI
         //                      ╰──────────┴──────────┴──────────╯   ╰──────────┴──────────┴──────────╯
@@ -77,13 +77,13 @@
             bindings = <
         //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
         //│   ESC    │    7     │     8    │    9     │     0    │   │          │          │    UP    │          │          │
-            &kp ESC     &kp N7    &kp N8      &kp N9     &kp N0        &trans     &trans     &kp UARW   &trans     &trans
+   &trans   &kp ESC     &kp N7    &kp N8      &kp N9     &kp N0        &trans     &trans     &kp UARW   &trans     &trans     &trans
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
         //│ DELETE   │    4     │     5    │    6     │          |   |  HOME    │ LEFT     │ DOWN     │ UP       │ RIGHT    │
-            &kp DEL     &kp N4    &kp N5      &kp N6     &trans        &kp HOME   &kp LARW   &kp DARW   &kp RARW   &kp END 
+   &trans   &kp DEL     &kp N4    &kp N5      &kp N6     &trans        &kp HOME   &kp LARW   &kp DARW   &kp RARW   &kp END    &trans
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
         //│          │    1     │     2    │    3     │          │   │          │ HOME     │ PAGE DN  │ PAGE UP  │ END      │
-             &trans     &kp N1    &kp N2      &kp N3     &trans         &trans    &kp HOME   &kp PG_DN  &kp PG_UP  &trans
+   &trans    &trans     &kp N1    &kp N2      &kp N3     &trans         &trans    &kp HOME   &kp PG_DN  &kp PG_UP  &trans     &trans
         //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
                                   &kp LSHIFT  &trans    &kp LCTRL       &trans    &trans     &trans
         //                      ╰──────────┴──────────┴──────────╯   ╰──────────┴──────────┴──────────╯
@@ -94,13 +94,13 @@
             bindings = <
         //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
         //│  !       │  @       │  #       │  $       │  %       │   │  ^       │  &       │  *       │  `       │  ~       │
-            &kp EXCL   &kp AT     &kp HASH   &kp DLLR   &kp PRCNT      &kp CARET  &kp AMPS   &kp ASTRK  &kp GRAVE   &kp TILDE
+  &trans    &kp EXCL   &kp AT     &kp HASH   &kp DLLR   &kp PRCNT      &kp CARET  &kp AMPS   &kp ASTRK  &kp GRAVE   &kp TILDE  &trans
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
         //│  "       │  [       │  {       │  (       │     <    │   │   /      │  -       │  =       │     :    │  ;       │
-            &kp DQT  &kp LBKT   &kp LBRC   &kp LPAR   &kp LESS_THAN    &kp FSLH   &kp MINUS  &kp EQUAL  &kp COLON   &kp SEMI
+  &trans    &kp DQT  &kp LBKT   &kp LBRC   &kp LPAR   &kp LESS_THAN    &kp FSLH   &kp MINUS  &kp EQUAL  &kp COLON   &kp SEMI   &trans
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
         //│  '       │  ]       │  }       │  )       │     >    │   │    \     │  _       │  +       │  │       │   ?      │
-            &kp SQT    &kp RBKT   &kp RBRC   &kp RPAR &kp GREATER_THAN &kp BSLH   &kp UNDER  &kp PLUS   &kp PIPE  &kp QMARK
+  &trans    &kp SQT    &kp RBKT   &kp RBRC   &kp RPAR &kp GREATER_THAN &kp BSLH   &kp UNDER  &kp PLUS   &kp PIPE  &kp QMARK    &trans
         //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
                                   &trans     &trans     &trans         &trans     &trans     &trans
         //                      ╰──────────┴──────────┴──────────╯   ╰──────────┴──────────┴──────────╯
@@ -111,13 +111,13 @@
             bindings = <
         //╭──────────┬──────────┬──────────┬───────────┬────────────╮   ╭────────────┬────────────┬──────────┬───────────┬──────────╮
         //│  F1      │  F2      │  F3      │  F4       │ PROFILE 0  │   │ PROFILE 2  │ TOGGLEOUT  │ WINDOWS  │           │          │
-            &kp F1     &kp F2     &kp F3     &kp F4     &bt BT_SEL 0     &bt BT_SEL 2  &out OUT_TOG &tog WIN    &trans      &trans
+  &trans    &kp F1     &kp F2     &kp F3     &kp F4     &bt BT_SEL 0     &bt BT_SEL 2  &out OUT_TOG &tog WIN    &trans      &trans        &trans
         //├──────────┼──────────┼──────────┼───────────┼────────────┤   ├────────────┼────────────┼──────────┼───────────┼──────────┤
         //│  F5      │  F6      │  F7      │  F8       │ PROFILE 1  │   │ PROFILE 3  │ INC BRIGHT │ VOL MUTE │  VOL UP   │ VOL DOWN │
-            &kp F5     &kp F6     &kp F7     &kp F8     &bt BT_SEL 1     &bt BT_SEL 3  &kp C_BRI_UP &kp C_MUTE &kp C_VOL_UP &kp C_VOL_DN
+  &trans    &kp F5     &kp F6     &kp F7     &kp F8     &bt BT_SEL 1     &bt BT_SEL 3  &kp C_BRI_UP &kp C_MUTE &kp C_VOL_UP &kp C_VOL_DN  &trans
         //├──────────┼──────────┼──────────┼───────────┼────────────┤   ├────────────┼────────────┼──────────┼───────────┼──────────┤
         //│  F9      │  F10     │  F11     │  F12      │  CLEAR BT  │   │ PROFILE 4  │ DEC BRIGHT │ PREVSONG |   PAUSE   │ NEXTSONG │
-            &kp F9     &kp F10    &kp F11    &kp F12     &bt BT_CLR      &bt BT_SEL 4  &kp C_BRI_DEC &kp C_PREV &kp C_PP &kp C_NEXT
+  &trans    &kp F9     &kp F10    &kp F11    &kp F12     &bt BT_CLR      &bt BT_SEL 4  &kp C_BRI_DEC &kp C_PREV &kp C_PP &kp C_NEXT       &trans
         //╰──────────┴──────────┴──────────┼───────────┼────────────┤   ├────────────┼────────────┼──────────┴───────────┴──────────╯
                                    &trans      &trans     &trans           &trans        &trans      &trans
         //                      ╰──────────┴───────────┴────────────╯   ╰────────────┴────────────┴──────────╯
