@@ -19,7 +19,7 @@
             tapping-term-ms = <200>;
             quick-tap-ms = <150>;
             bindings = <&kp>, <&kp>;
-            };
+        };
     };
 
     conditional_layers {
@@ -28,6 +28,42 @@
         tri_layer {
             if-layers = <RIG LEF>;
             then-layer = <TRI>;
+        };
+    };
+
+    combos {
+        compatible = "zmk,combos";
+
+        combo_vimwq {
+            timeout-ms = <20>;
+            key-positions = <1 2>;
+            bindings = <&vim_quit>;
+        };
+
+        save_all {
+            timeout-ms = <20>;
+            bindings = <&save_all>;
+            key-positions = <25 26>;
+        };
+    };
+
+    macros {
+        vim_quit: vim_quit {
+            label = "ZM_vim_quit";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap>, <&kp ESC &kp COLON &kp W &kp Q &kp ENTER>;
+        };
+        save_all: save_all {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_press>,
+                <&kp LEFT_GUI &kp LALT &kp S>,
+                <&macro_release>,
+                <&kp LGUI &kp LALT &kp S>;
+
+            label = "SAVE_ALL";
         };
     };
 
@@ -58,9 +94,9 @@
 
         right_layer {
             bindings = <
-&none  &kp ESC       &kp N7  &kp N8         &kp N9  &none        &none     &none     &kp UP    &none      &none    &none
-&none  &kp DEL       &kp N4  &kp N5         &kp N6  &none        &kp HOME  &kp LEFT  &kp DOWN  &kp RIGHT  &kp END  &none
-&none  &ht LSHFT N0  &kp N1  &kp N2         &kp N3  &none        &none     &none     &none     &none      &none    &none
+&none  &kp ESC       &kp N7  &kp N8         &kp N9  &none       &none     &none     &kp UP    &none      &none    &none
+&none  &kp DEL       &kp N4  &kp N5         &kp N6  &none       &kp HOME  &kp LEFT  &kp DOWN  &kp RIGHT  &kp END  &none
+&none  &ht LSHFT N0  &kp N1  &kp N2         &kp N3  &none       &none     &none     &none     &none      &none    &none
                              &ht LSHFT ESC  &trans  &kp LALT    &trans    &trans    &trans
             >;
 
@@ -87,6 +123,6 @@
             >;
 
             label = "Config";
-        }; 
+        };
     };
 };
