@@ -12,62 +12,73 @@
 #define AS(keycode) &as LS(keycode) keycode
 
 / {
-    chosen {
-        zmk,physical-layout = &foostan_corne_5col_layout;
-    };
-
-    behaviors {
-        as: auto_shift {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            tapping_term_ms = <200>;
-            quick_tap_ms = <0>;
-            flavor = "tap-preferred";
-            bindings = <&kp>, <&kp>;
+        chosen {
+                zmk,physical-layout = &foostan_corne_5col_layout;
         };
-    };
+
+        conditional_layers {
+                compatible = "zmk,conditional-layers";
+                tri_layer {
+                if-layers = <1 2>;
+                then-layer = <3>;
+                };
+        };
+
+        combos {
+                compatible = "zmk,combos";
+                combo_esc {
+                timeout-ms = <50>;
+                key-positions = <0 1>;
+                bindings = <&kp ESC>;
+                };
+                combo_backspace {
+                timeout-ms = <50>;
+                key-positions = <8 9>;
+                bindings = <&kp BSPC>;
+                };
+                combo_tab {
+                timeout-ms = <50>;
+                key-positions = <10 11>;
+                bindings = <&kp TAB>;
+                };
+        };
+
+        behaviors {
+                as: auto_shift {
+                compatible = "zmk,behavior-hold-tap";
+                #binding-cells = <2>;
+                tapping_term_ms = <200>;
+                quick_tap_ms = <0>;
+                flavor = "tap-preferred";
+                bindings = <&kp>, <&kp>;
+                };
+        };
         keymap {
                 compatible = "zmk,keymap";
 
-                default_layer {
-// -----------------------------------------------------------------------------------------
-// |  Q  |  W  |  E  |  R  |  T  |     |  Y  |  U   |  I   |  O   | P |
-// |  A  |  S  |  D  |  F  |  G  |     |  H  |  J   |  K   |  L   | ' | 
-// |  Z  |  X  |  C  |  V  |  B  |     |  N  |  M   | CTRL | META | . |
-//             | GUI | LWR | SPC |     | ENT | RSE  | BSPC |
-                        display-name = "Base";
+                mac_layer {
+                        display-name = "Mac";
                         bindings = <
-   AS(Q) AS(W) AS(E) AS(R) AS(T)     AS(Y)   AS(U)  AS(I)     AS(O)     AS(P)
-   AS(A) AS(S) AS(D) AS(F) AS(G)     AS(H)   AS(J)  AS(K)     AS(L)     AS(SQT)
-   AS(Z) AS(X) AS(C) AS(V) AS(B)     AS(N)   AS(M)  &kp LCTL  &kp RALT  AS(DOT)
-        &kp LGUI &mo 1 &kp SPACE     AS(RET) &mo 2  &kp BSPC
+   AS(Q) AS(W) AS(E)      AS(R)   AS(T)          AS(Y)     AS(U)   AS(I)      AS(O)     AS(P)
+   AS(A) AS(S) AS(D)      AS(F)   AS(G)          AS(H)     AS(J)   AS(K)      AS(L)     AS(SQT)
+   AS(Z) AS(X) AS(C)      AS(V)   AS(B)          AS(N)     AS(M)   &kp LCTRL  &kp RALT  AS(DOT)
+               &kp LGUI   &mo 1   &kp SPACE      AS(RET)   &mo 2   &kp BSPC
                         >;
                 };
 
-                lower_layer {
-// -----------------------------------------------------------------------------------------
-// | !     |  @  |  #  |  $  |  %  |     |  ^  |  &  |  *  |  (  |  )  |
-// | BT1   | BT2 | BT3 | BT4 | BT5 |     | LFT | DWN |  UP | RGT |     |
-// | BTCLR |     |     |     |     |     |     |     |     |     |     |
-//               | GUI |     | SPC |     | ENT | ESC | TAB |
-                        display-name = "Lower";
+                left_layer {
+                        display-name = "Left";
                         bindings = <
    &kp EXCL     &kp AT       &kp HASH     &kp DLLR     &kp PRCNT        &kp CARET &kp AMPS  &kp KP_MULTIPLY &kp LPAR  &kp RPAR
-   &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4     &kp LEFT  &kp DOWN  &kp UP          &kp RIGHT &trans 
-   &bt BT_CLR   &trans       &trans       &trans       &trans           &trans    &trans    &trans          &trans    &trans 
+   &kp LEFT     &kp DOWN     &kp UP       &kp RIGHT    &trans           &trans    &kp LEFT  &kp DOWN        &kp UP    &kp RIGHT  
+   &trans       &trans       &trans       &trans       &trans           &trans    &trans    &trans          &trans    &trans 
                              &kp LGUI     &trans       &kp SPACE        AS(RET)   &kp ESC   &kp TAB
                         >;
                 };
 
-                raise_layer {
-// -----------------------------------------------------------------------------------------
-// | 1! |  2@ |  3# |  4$ |  5% |     |  6^ |  7& |  8* |  9(  |  0)  |
-// | -_ |  =+ |  {  |  [  |  (  |     |  )  |  ]  |  }  |  /?  |  \|  |
-// | `~ |     |     |  ,< |  :  |     |  ;  |  .> | CTRL| META |      |
-//            | GUI | ESC | SPC |     | ENT |     | TAB |
-                        display-name = "Raise";
+                right_layer {
+                        display-name = "Right";
                         bindings = <
-
    AS(N1)    AS(N2)    AS(N3)    AS(N4)    AS(N5)        AS(N6)    AS(N7)    AS(N8)    AS(N9)   AS(N0)
    AS(MINUS) AS(EQUAL) &kp LBRC  &kp LBKT  &kp LPAR      &kp RPAR  &kp RBKT  &kp RBRC  AS(FSLH) AS(BSLH)
    AS(GRAVE) &trans    &trans    AS(COMMA) &kp COLON     &kp SEMI  AS(DOT)   &kp LCTRL &kp RALT &trans
@@ -75,16 +86,14 @@
                         >;
                 };
 
-                extra_1 {
-                        status = "reserved";
-                };
-
-                extra_2 {
-                        status = "reserved";
-                };
-
-                extra_3 {
-                        status = "reserved";
+                config_layer {
+                        display-name = "Config";
+                        bindings = <
+   &trans       &trans       &trans       &trans       &trans            &trans    &kp C_PREVIOUS   &kp C_PLAY_PAUSE  &kp C_NEXT   &kp C_VOLUME_DOWN
+   &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4      &trans    &trans           &trans            &trans       &kp C_VOLUME_DOWN
+   &bt BT_CLR   &trans       &trans       &trans       &trans            &trans    &trans           &trans            &trans       &kp C_MUTE
+                             &trans       &trans       &trans            &trans    &trans           &trans
+                        >;
                 };
         };
 };
