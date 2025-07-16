@@ -196,51 +196,60 @@
                                 &macro_release &kp LCTRL
                         >;
                 };
+                // 📋 Copy (CMD + C)
                 copy: copy {
                         compatible = "zmk,behavior-macro";
                         #binding-cells = <0>;
                         bindings = <
-                                &macro_press &kp LC(LGUI)
+                                &macro_press &kp LGUI
                                 &macro_tap &kp C
-                                &macro_release &kp LC(LGUI)
+                                &macro_release &kp LGUI
                         >;
                 };
+
+                // ✂️ Cut (CMD + X)
                 cut: cut {
                         compatible = "zmk,behavior-macro";
                         #binding-cells = <0>;
                         bindings = <
-                                &macro_press &kp LC(LGUI)
+                                &macro_press &kp LGUI
                                 &macro_tap &kp X
-                                &macro_release &kp LC(LGUI)
+                                &macro_release &kp LGUI
                         >;
                 };
+
+                // 📥 Paste (CMD + V)
                 paste: paste {
                         compatible = "zmk,behavior-macro";
                         #binding-cells = <0>;
                         bindings = <
-                                &macro_press &kp LC(LGUI)
+                                &macro_press &kp LGUI
                                 &macro_tap &kp V
-                                &macro_release &kp LC(LGUI)
+                                &macro_release &kp LGUI
                         >;
                 };
+
+                // ↩️ Undo (CMD + Z)
                 undo: undo {
                         compatible = "zmk,behavior-macro";
                         #binding-cells = <0>;
                         bindings = <
-                                &macro_press &kp LC(LGUI)
+                                &macro_press &kp LGUI
                                 &macro_tap &kp Z
-                                &macro_release &kp LC(LGUI)
+                                &macro_release &kp LGUI
                         >;
                 };
+
+                // ↪️ Redo (CMD + Shift + Z)
                 redo: redo {
                         compatible = "zmk,behavior-macro";
                         #binding-cells = <0>;
                         bindings = <
-                                &macro_press &kp LC(LGUI)
-                                &macro_press &kp LS(LSHFT)
+                                &macro_press &kp LGUI
+                                &macro_press &kp LSHFT
                                 &macro_tap &kp Z
-                                &macro_release &kp LS(LSHFT)
-                                &macro_release &kp LC(LGUI)
+                                &macro_release &kp LSHFT
+                                &macro_release &kp LGUI
                         >;
                 };
                 close_tab: close_tab {
