@@ -59,28 +59,28 @@
                         compatible = "zmk,behavior-macro";
                         #binding-cells = <0>;
                         bindings = <
-                                &macro_press &kp LC(LC)
+                                &macro_press &kp LCTRL
                                 &macro_tap &kp LEFT
-                                &macro_release &kp LC(LC)
+                                &macro_release &kp LCTRL
                         >;
                 };
                 workspace_right: workspace_right {
                         compatible = "zmk,behavior-macro";
                         #binding-cells = <0>;
                         bindings = <
-                                &macro_press &kp LC(LC)
+                                &macro_press &kp LCTRL
                                 &macro_tap &kp RIGHT
-                                &macro_release &kp LC(LC)
+                                &macro_release &kp LCTRL
                         >;
                 };
                 console_log: console_log {
                         compatible = "zmk,behavior-macro";
                         #binding-cells = <0>;
                         bindings = <
-                                &macro_press &kp LC(LC)
+                                &macro_press &kp LCTRL
                                 &macro_press &kp LC(LSHFT)
                                 &macro_tap &kp L
-                                &macro_release &kp LC(LC)
+                                &macro_release &kp LCTRL
                                 &macro_release &kp LC(LSHFT)
                         >;
                 };
@@ -106,10 +106,10 @@
                         compatible = "zmk,behavior-macro";
                         #binding-cells = <0>;
                         bindings = <
-                                &macro_press &kp LC(LC)
+                                &macro_press &kp LCTRL
                                 &macro_press &kp LC(LGUI)
                                 &macro_tap &kp Q
-                                &macro_release &kp LC(LC)
+                                &macro_release &kp LCTRL
                                 &macro_release &kp LC(LGUI)
                         >;
                 };
@@ -166,9 +166,9 @@
                         compatible = "zmk,behavior-macro";
                         #binding-cells = <0>;
                         bindings = <
-                                &macro_press &kp LC(LC)
+                                &macro_press &kp LCTRL
                                 &macro_tap &kp TAB
-                                &macro_release &kp LC(LC)
+                                &macro_release &kp LCTRL
                         >;
                 };
                 copy: copy {
