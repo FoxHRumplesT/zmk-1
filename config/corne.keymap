@@ -19,38 +19,280 @@
         conditional_layers {
                 compatible = "zmk,conditional-layers";
                 tri_layer {
-                if-layers = <1 2>;
-                then-layer = <3>;
+                        if-layers = <1 2>;
+                        then-layer = <3>;
                 };
         };
 
         combos {
                 compatible = "zmk,combos";
                 combo_esc {
-                timeout-ms = <50>;
-                key-positions = <0 1>;
-                bindings = <&kp ESC>;
+                        timeout-ms = <50>;
+                        key-positions = <0 1>;
+                        bindings = <&kp ESC>;
                 };
                 combo_backspace {
-                timeout-ms = <50>;
-                key-positions = <8 9>;
-                bindings = <&kp BSPC>;
+                        timeout-ms = <50>;
+                        key-positions = <8 9>;
+                        bindings = <&kp BSPC>;
                 };
                 combo_tab {
-                timeout-ms = <50>;
-                key-positions = <10 11>;
-                bindings = <&kp TAB>;
+                        timeout-ms = <50>;
+                        key-positions = <10 11>;
+                        bindings = <&kp TAB>;
+                };
+        };
+
+        macros {
+                duplicate_line: duplicate_line {
+                        compatible = "zmk,behavior-macro";
+                        #binding-cells = <0>;
+                        bindings = <
+                                &macro_press &kp LC(LSHFT)
+                                &macro_press &kp LS(LSHFT)
+                                &macro_tap &kp DOWN
+                                &macro_release &kp LC(LSHFT)
+                                &macro_release &kp LS(LSHFT)
+                        >;
+                };
+                workspace_left: workspace_left {
+                        compatible = "zmk,behavior-macro";
+                        #binding-cells = <0>;
+                        bindings = <
+                                &macro_press &kp LC(LC)
+                                &macro_tap &kp LEFT
+                                &macro_release &kp LC(LC)
+                        >;
+                };
+                workspace_right: workspace_right {
+                        compatible = "zmk,behavior-macro";
+                        #binding-cells = <0>;
+                        bindings = <
+                                &macro_press &kp LC(LC)
+                                &macro_tap &kp RIGHT
+                                &macro_release &kp LC(LC)
+                        >;
+                };
+                console_log: console_log {
+                        compatible = "zmk,behavior-macro";
+                        #binding-cells = <0>;
+                        bindings = <
+                                &macro_press &kp LC(LC)
+                                &macro_press &kp LC(LSHFT)
+                                &macro_tap &kp L
+                                &macro_release &kp LC(LC)
+                                &macro_release &kp LC(LSHFT)
+                        >;
+                };
+                browser_back: browser_back {
+                        compatible = "zmk,behavior-macro";
+                        #binding-cells = <0>;
+                        bindings = <
+                                &macro_press &kp LC(LGUI)
+                                &macro_tap &kp LBKT
+                                &macro_release &kp LC(LGUI)
+                        >;
+                };
+                browser_forward: browser_forward {
+                        compatible = "zmk,behavior-macro";
+                        #binding-cells = <0>;
+                        bindings = <
+                                &macro_press &kp LC(LGUI)
+                                &macro_tap &kp RBKT
+                                &macro_release &kp LC(LGUI)
+                        >;
+                };
+                lock_screen: lock_screen {
+                        compatible = "zmk,behavior-macro";
+                        #binding-cells = <0>;
+                        bindings = <
+                                &macro_press &kp LC(LC)
+                                &macro_press &kp LC(LGUI)
+                                &macro_tap &kp Q
+                                &macro_release &kp LC(LC)
+                                &macro_release &kp LC(LGUI)
+                        >;
+                };
+                search: search {
+                        compatible = "zmk,behavior-macro";
+                        #binding-cells = <0>;
+                        bindings = <
+                                &macro_press &kp LC(LGUI)
+                                &macro_tap &kp F
+                                &macro_release &kp LC(LGUI)
+                        >;
+                };
+                search_global: search_global {
+                        compatible = "zmk,behavior-macro";
+                        #binding-cells = <0>;
+                        bindings = <
+                                &macro_press &kp LC(LGUI)
+                                &macro_press &kp LS(LSHFT)
+                                &macro_tap &kp F
+                                &macro_release &kp LS(LSHFT)
+                                &macro_release &kp LC(LGUI)
+                        >;
+                };
+                search_file: search_file {
+                        compatible = "zmk,behavior-macro";
+                        #binding-cells = <0>;
+                        bindings = <
+                                &macro_press &kp LC(LGUI)
+                                &macro_tap &kp P
+                                &macro_release &kp LC(LGUI)
+                        >;
+                };
+                search_command: search_command {
+                        compatible = "zmk,behavior-macro";
+                        #binding-cells = <0>;
+                        bindings = <
+                                &macro_press &kp LC(LGUI)
+                                &macro_press &kp LS(LSHFT)
+                                &macro_tap &kp P
+                                &macro_release &kp LS(LSHFT)
+                                &macro_release &kp LC(LGUI)
+                        >;
+                };
+                switch_window: switch_window {
+                        compatible = "zmk,behavior-macro";
+                        #binding-cells = <0>;
+                        bindings = <
+                                &macro_press &kp LC(LGUI)
+                                &macro_tap &kp TAB
+                                &macro_release &kp LC(LGUI)
+                        >;
+                };
+                switch_tab: switch_tab {
+                        compatible = "zmk,behavior-macro";
+                        #binding-cells = <0>;
+                        bindings = <
+                                &macro_press &kp LC(LC)
+                                &macro_tap &kp TAB
+                                &macro_release &kp LC(LC)
+                        >;
+                };
+                copy: copy {
+                        compatible = "zmk,behavior-macro";
+                        #binding-cells = <0>;
+                        bindings = <
+                                &macro_press &kp LC(LGUI)
+                                &macro_tap &kp C
+                                &macro_release &kp LC(LGUI)
+                        >;
+                };
+                cut: cut {
+                        compatible = "zmk,behavior-macro";
+                        #binding-cells = <0>;
+                        bindings = <
+                                &macro_press &kp LC(LGUI)
+                                &macro_tap &kp X
+                                &macro_release &kp LC(LGUI)
+                        >;
+                };
+                paste: paste {
+                        compatible = "zmk,behavior-macro";
+                        #binding-cells = <0>;
+                        bindings = <
+                                &macro_press &kp LC(LGUI)
+                                &macro_tap &kp V
+                                &macro_release &kp LC(LGUI)
+                        >;
+                };
+                undo: undo {
+                        compatible = "zmk,behavior-macro";
+                        #binding-cells = <0>;
+                        bindings = <
+                                &macro_press &kp LC(LGUI)
+                                &macro_tap &kp Z
+                                &macro_release &kp LC(LGUI)
+                        >;
+                };
+                redo: redo {
+                        compatible = "zmk,behavior-macro";
+                        #binding-cells = <0>;
+                        bindings = <
+                                &macro_press &kp LC(LGUI)
+                                &macro_press &kp LS(LSHFT)
+                                &macro_tap &kp Z
+                                &macro_release &kp LS(LSHFT)
+                                &macro_release &kp LC(LGUI)
+                        >;
+                };
+                close_tab: close_tab {
+                        compatible = "zmk,behavior-macro";
+                        #binding-cells = <0>;
+                        bindings = <
+                                &macro_press &kp LC(LGUI)
+                                &macro_tap &kp W
+                                &macro_release &kp LC(LGUI)
+                        >;
+                };
+                undo_close_tab: undo_close_tab {
+                        compatible = "zmk,behavior-macro";
+                        #binding-cells = <0>;
+                        bindings = <
+                                &macro_press &kp LC(LGUI)
+                                &macro_press &kp LS(LSHFT)
+                                &macro_tap &kp T
+                                &macro_release &kp LS(LSHFT)
+                                &macro_release &kp LC(LGUI)
+                        >;
+                };
+                close_app: close_app {
+                        compatible = "zmk,behavior-macro";
+                        #binding-cells = <0>;
+                        bindings = <
+                                &macro_press &kp LC(LGUI)
+                                &macro_tap &kp Q
+                                &macro_release &kp LC(LGUI)
+                        >;
+                };
+                move_line_up: move_line_up {
+                        compatible = "zmk,behavior-macro";
+                        #binding-cells = <0>;
+                        bindings = <
+                                &macro_press &kp LC(LSHFT)
+                                &macro_tap &kp UP
+                                &macro_release &kp LC(LSHFT)
+                        >;
+                };
+                move_line_down: move_line_down {
+                        compatible = "zmk,behavior-macro";
+                        #binding-cells = <0>;
+                        bindings = <
+                                &macro_press &kp LC(LSHFT)
+                                &macro_tap &kp DOWN
+                                &macro_release &kp LC(LSHFT)
+                        >;
+                };
+                move_word_left: move_word_left {
+                        compatible = "zmk,behavior-macro";
+                        #binding-cells = <0>;
+                        bindings = <
+                                &macro_press &kp LC(LSHFT)
+                                &macro_tap &kp LEFT
+                                &macro_release &kp LC(LSHFT)
+                        >;
+                };
+                move_word_right: move_word_right {
+                        compatible = "zmk,behavior-macro";
+                        #binding-cells = <0>;
+                        bindings = <
+                                &macro_press &kp LC(LSHFT)
+                                &macro_tap &kp RIGHT
+                                &macro_release &kp LC(LSHFT)
+                        >;
                 };
         };
 
         behaviors {
                 as: auto_shift {
-                compatible = "zmk,behavior-hold-tap";
-                #binding-cells = <2>;
-                tapping_term_ms = <200>;
-                quick_tap_ms = <0>;
-                flavor = "tap-preferred";
-                bindings = <&kp>, <&kp>;
+                        compatible = "zmk,behavior-hold-tap";
+                        #binding-cells = <2>;
+                        tapping_term_ms = <200>;
+                        quick_tap_ms = <0>;
+                        flavor = "tap-preferred";
+                        bindings = <&kp>, <&kp>;
                 };
         };
         keymap {
@@ -59,10 +301,10 @@
                 mac_layer {
                         display-name = "Mac";
                         bindings = <
-   AS(Q) AS(W) AS(E)      AS(R)   AS(T)          AS(Y)     AS(U)   AS(I)      AS(O)     AS(P)
-   AS(A) AS(S) AS(D)      AS(F)   AS(G)          AS(H)     AS(J)   AS(K)      AS(L)     AS(SQT)
-   AS(Z) AS(X) AS(C)      AS(V)   AS(B)          AS(N)     AS(M)   &kp LCTRL  &kp RALT  AS(DOT)
-               &kp LGUI   &mo 1   &kp SPACE      AS(RET)   &mo 2   &kp BSPC
+   AS(Q) AS(W) AS(E)      AS(R)   AS(T)          AS(Y)     AS(U)   AS(I)          AS(O)            AS(P)
+   AS(A) AS(S) AS(D)      AS(F)   AS(G)          AS(H)     AS(J)   AS(K)          AS(L)            &mt APOS SQT
+   AS(Z) AS(X) AS(C)      AS(V)   AS(B)          AS(N)     AS(M)   &mt DOT COMMA  &mt COLON SEMI   AS(SLASH)
+               &kp LGUI   &mo 1   &kp SPACE      AS(RET)   &mo 2   &kp LSHIFT
                         >;
                 };
 
@@ -72,7 +314,7 @@
    &kp EXCL     &kp AT       &kp HASH     &kp DLLR     &kp PRCNT        &kp CARET &kp AMPS  &kp KP_MULTIPLY &kp LPAR  &kp RPAR
    &kp LEFT     &kp DOWN     &kp UP       &kp RIGHT    &trans           &trans    &kp LEFT  &kp DOWN        &kp UP    &kp RIGHT  
    &trans       &trans       &trans       &trans       &trans           &trans    &trans    &trans          &trans    &trans 
-                             &kp LGUI     &trans       &kp SPACE        AS(RET)   &kp ESC   &kp TAB
+                             &kp LGUI     &trans       &kp SPACE        AS(RET)   &kp ESC   &kp LSHIFT
                         >;
                 };
 
@@ -82,7 +324,7 @@
    AS(N1)    AS(N2)    AS(N3)    AS(N4)    AS(N5)        AS(N6)    AS(N7)    AS(N8)    AS(N9)   AS(N0)
    AS(MINUS) AS(EQUAL) &kp LBRC  &kp LBKT  &kp LPAR      &kp RPAR  &kp RBKT  &kp RBRC  AS(FSLH) AS(BSLH)
    AS(GRAVE) &trans    &trans    AS(COMMA) &kp COLON     &kp SEMI  AS(DOT)   &kp LCTRL &kp RALT &trans
-                       &kp LGUI  &kp ESC   &kp SPACE     AS(RET)   &trans    &kp TAB
+                       &kp LGUI  &kp ESC   &kp SPACE     AS(RET)   &trans    &kp LSHIFT
                         >;
                 };
 
