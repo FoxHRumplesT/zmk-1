@@ -41,6 +41,31 @@
                         key-positions = <10 11>;
                         bindings = <&kp TAB>;
                 };
+                combo_undo {
+                        timeout-ms = <50>;
+                        key-positions = <20 21>;
+                        bindings = <&undo>;
+                };
+                combo_redo {
+                        timeout-ms = <50>;
+                        key-positions = <20 11>;
+                        bindings = <&redo>;
+                };
+                combo_copy {
+                        timeout-ms = <50>;
+                        key-positions = <20 21>;
+                        bindings = <&copy>;
+                };
+                combo_cut {
+                        timeout-ms = <50>;
+                        key-positions = <21 21>;
+                        bindings = <&cut>;
+                };
+                combo_paste {
+                        timeout-ms = <50>;
+                        key-positions = <22 23>;
+                        bindings = <&paste>;
+                };
         };
 
         macros {
