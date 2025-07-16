@@ -53,12 +53,12 @@
                 };
                 combo_copy {
                         timeout-ms = <50>;
-                        key-positions = <20 21>;
+                        key-positions = <21 22>;
                         bindings = <&copy>;
                 };
                 combo_cut {
                         timeout-ms = <50>;
-                        key-positions = <21 21>;
+                        key-positions = <21 23>;
                         bindings = <&cut>;
                 };
                 combo_paste {
@@ -327,9 +327,9 @@
                         display-name = "Mac";
                         bindings = <
    AS(Q) AS(W) AS(E)      AS(R)   AS(T)          AS(Y)     AS(U)   AS(I)          AS(O)            AS(P)
-   AS(A) AS(S) AS(D)      AS(F)   AS(G)          AS(H)     AS(J)   AS(K)          AS(L)            &mt APOS SQT
-   AS(Z) AS(X) AS(C)      AS(V)   AS(B)          AS(N)     AS(M)   &mt DOT COMMA  &mt COLON SEMI   AS(SLASH)
-               &kp LGUI   &mo 1   &kp SPACE      AS(RET)   &mo 2   &kp LSHIFT
+   AS(A) AS(S) AS(D)      AS(F)   AS(G)          AS(H)     AS(J)   AS(K)          AS(L)            &as DQT SQT
+   AS(Z) AS(X) AS(C)      AS(V)   AS(B)          AS(N)     AS(M)   &as COMMA DOT  &as SEMI COLON   &as SLASH QMARK
+               &kp LGUI   &mo 1   &kp SPACE      AS(RET)   &mo 2   &kp RSHIFT
                         >;
                 };
 
@@ -339,17 +339,17 @@
    &kp EXCL     &kp AT       &kp HASH     &kp DLLR     &kp PRCNT        &kp CARET &kp AMPS  &kp KP_MULTIPLY &kp LPAR  &kp RPAR
    &kp LEFT     &kp DOWN     &kp UP       &kp RIGHT    &trans           &trans    &kp LEFT  &kp DOWN        &kp UP    &kp RIGHT  
    &trans       &trans       &trans       &trans       &trans           &trans    &trans    &trans          &trans    &trans 
-                             &kp LGUI     &trans       &kp SPACE        AS(RET)   &kp ESC   &kp LSHIFT
+                             &kp LGUI     &trans       &kp SPACE        AS(RET)   &trans   &kp RSHIFT
                         >;
                 };
 
-                right_layer {
+                right_layer {}
                         display-name = "Right";
                         bindings = <
-   AS(N1)    AS(N2)    AS(N3)    AS(N4)    AS(N5)        AS(N6)    AS(N7)    AS(N8)    AS(N9)   AS(N0)
-   AS(MINUS) AS(EQUAL) &kp LBRC  &kp LBKT  &kp LPAR      &kp RPAR  &kp RBKT  &kp RBRC  AS(FSLH) AS(BSLH)
-   AS(GRAVE) &trans    &trans    AS(COMMA) &kp COLON     &kp SEMI  AS(DOT)   &kp LCTRL &kp RALT &trans
-                       &kp LGUI  &kp ESC   &kp SPACE     AS(RET)   &trans    &kp LSHIFT
+   AS(N1)    AS(N2)    AS(N3)    AS(N4)    AS(N5)        AS(N6)    AS(N7)    AS(N8)      AS(N9)     AS(N0)
+   AS(MINUS) AS(EQUAL) &kp LBRC  &kp LBKT  &kp LPAR      &kp RPAR  &kp RBKT  &kp RBRC    AS(FSLH)   AS(BSLH)
+   AS(GRAVE) &trans    &trans    AS(COMMA) &kp COLON     &kp SEMI  AS(DOT)   &kp LCTRL   &kp RALT   &trans
+                       &kp LGUI  &trans    &kp SPACE     AS(RET)   &trans    &kp RSHIFT
                         >;
                 };
 
