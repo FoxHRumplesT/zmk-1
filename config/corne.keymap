@@ -228,7 +228,7 @@
                         tapping-term-ms = <200>;
                         quick-tap-ms = <0>;
                         flavor = "tap-preferred";
-                        bindings = <&kp>, <&kp>;
+                        bindings = <&kp>, <&kp>;        
                 };
         };
         keymap {
@@ -257,10 +257,10 @@
                 right_layer {
                         display-name = "Right";
                         bindings = <
-   &kp EXCL  &kp AT   &kp HASH &kp DLLR &kp CARET         &as UNDER MINUS  &kp HOME      &kp UP        &kp END   &trans 
-   &trans    &trans   &trans   &kp PIPE &kp AMPS          &as BSLH SLASH   &kp LEFT      &kp DOWN      &kp RIGHT &as TILDE GRAVE 
-   &undo     &cut     &copy    &paste   &redo             &as RPAR LPAR    &as RBRC LBRC &as RBKT LBKT &as GT LT &kp RSHIFT
-                      &trans   &trans   &trans            &trans           &trans        &trans
+   &kp EXCL      &kp AT        &kp HASH      &kp DLLR  &kp CARET     &as UNDER MINUS  &kp HOME      &kp UP        &kp END   &trans 
+   &as RPAR LPAR &as RBRC LBRC &as RBKT LBKT &as GT LT &kp AMPS      &as BSLH SLASH   &kp LEFT      &kp DOWN      &kp RIGHT &as TILDE GRAVE 
+   &undo         &cut          &copy         &paste    &redo         &trans           &trans        &trans        &kp PIPE  &kp RSHIFT
+                               &trans        &trans    &trans        &trans           &trans        &trans
                         >;
                 };
 
