@@ -6,10 +6,6 @@
 #define AS(keycode) &as LS(keycode) keycode
 
 / {
-        chosen {
-                zmk,physical-layout = &foostan_corne_5col_layout;
-        };
-
         conditional_layers {
                 compatible = "zmk,conditional-layers";
                 tri_layer {
@@ -41,183 +37,183 @@
                 d_line: duplicate_line {
                         compatible = "zmk,behavior-macro";
                         #binding-cells = <0>;
-                        bindings = <
-                                &macro_press &kp LSHFT
-                                &macro_press &kp LALT
-                                &macro_tap &kp DOWN
-                                &macro_release &kp LSHFT
-                                &macro_release &kp LALT
-                        >;
+                        bindings = 
+                                <&macro_press &kp LSHFT>,
+                                <&macro_press &kp LALT>,
+                                <&macro_tap &kp DOWN>,
+                                <&macro_release &kp LSHFT>,
+                                <&macro_release &kp LALT>
+                        ;
                 };
                 w_left: workspace_left {
                         compatible = "zmk,behavior-macro";
                         #binding-cells = <0>;
-                        bindings = <
-                                &macro_press &kp LCTRL
-                                &macro_tap &kp LEFT
-                                &macro_release &kp LCTRL
-                        >;
+                        bindings = 
+                                <&macro_press &kp LCTRL>,
+                                <&macro_tap &kp LEFT>,
+                                <&macro_release &kp LCTRL>
+                        ;
                 };
                 w_right: workspace_right {
                         compatible = "zmk,behavior-macro";
                         #binding-cells = <0>;
-                        bindings = <
-                                &macro_press &kp LCTRL
-                                &macro_tap &kp RIGHT
-                                &macro_release &kp LCTRL
-                        >;
+                        bindings = 
+                                <&macro_press &kp LCTRL>,
+                                <&macro_tap &kp RIGHT>,
+                                <&macro_release &kp LCTRL>
+                        ;
                 };
                 clog: console_log {
                         compatible = "zmk,behavior-macro";
                         #binding-cells = <0>;
-                        bindings = <
-                                &macro_press &kp LCTRL
-                                &macro_press &kp LALT
-                                &macro_tap &kp L
-                                &macro_release &kp LCTRL
-                                &macro_release &kp LALT
-                        >;
+                        bindings = 
+                                <&macro_press &kp LCTRL>,
+                                <&macro_press &kp LALT>,
+                                <&macro_tap &kp L>,
+                                <&macro_release &kp LCTRL>,
+                                <&macro_release &kp LALT>
+                        ;
                 };
                 lock_s: lock_screen {
                         compatible = "zmk,behavior-macro";
                         #binding-cells = <0>;
-                        bindings = <
-                                &macro_press &kp LCTRL
-                                &macro_press &kp LGUI
-                                &macro_tap &kp Q
-                                &macro_release &kp LCTRL
-                                &macro_release &kp LGUI
-                        >;
+                        bindings = 
+                                <&macro_press &kp LCTRL>,
+                                <&macro_press &kp LGUI>,
+                                <&macro_tap &kp Q>,
+                                <&macro_release &kp LCTRL>,
+                                <&macro_release &kp LGUI>
+                        ;
                 };
                 switch_w: switch_window {
                         compatible = "zmk,behavior-macro";
                         #binding-cells = <0>;
-                        bindings = <
-                                &macro_press &kp LGUI
-                                &macro_tap &kp TAB
-                                &macro_release &kp LGUI
-                        >;
+                        bindings = 
+                                <&macro_press &kp LGUI>,
+                                <&macro_tap &kp TAB>,
+                                <&macro_release &kp LGUI>
+                        ;
                 };
                 switch_t: switch_tab {
                         compatible = "zmk,behavior-macro";
                         #binding-cells = <0>;
-                        bindings = <
-                                &macro_press &kp LCTRL
-                                &macro_tap &kp TAB
-                                &macro_release &kp LCTRL
-                        >;
+                        bindings = 
+                                <&macro_press &kp LCTRL>,
+                                <&macro_tap &kp TAB>,
+                                <&macro_release &kp LCTRL>
+                        ;
                 };
                 copy: copy {
                         compatible = "zmk,behavior-macro";
                         #binding-cells = <0>;
-                        bindings = <
-                                &macro_press &kp LGUI
-                                &macro_tap &kp C
-                                &macro_release &kp LGUI
-                        >;
+                        bindings = 
+                                <&macro_press &kp LGUI>,
+                                <&macro_tap &kp C>,
+                                <&macro_release &kp LGUI>
+                        ;
                 };
                 cut: cut {
                         compatible = "zmk,behavior-macro";
                         #binding-cells = <0>;
-                        bindings = <
-                                &macro_press &kp LGUI
-                                &macro_tap &kp X
-                                &macro_release &kp LGUI
-                        >;
+                        bindings = 
+                                <&macro_press &kp LGUI>,
+                                <&macro_tap &kp X>,
+                                <&macro_release &kp LGUI>
+                        ;
                 };
                 paste: paste {
                         compatible = "zmk,behavior-macro";
                         #binding-cells = <0>;
-                        bindings = <
-                                &macro_press &kp LGUI
-                                &macro_tap &kp V
-                                &macro_release &kp LGUI
-                        >;
+                        bindings = 
+                                <&macro_press &kp LGUI>,
+                                <&macro_tap &kp V>,
+                                <&macro_release &kp LGUI>
+                        ;
                 };
                 undo: undo {
                         compatible = "zmk,behavior-macro";
                         #binding-cells = <0>;
-                        bindings = <
-                                &macro_press &kp LGUI
-                                &macro_tap &kp Z
-                                &macro_release &kp LGUI
-                        >;
+                        bindings = 
+                                <&macro_press &kp LGUI>,
+                                <&macro_tap &kp Z>,
+                                <&macro_release &kp LGUI>
+                        ;
                 };
                 redo: redo {
                         compatible = "zmk,behavior-macro";
                         #binding-cells = <0>;
-                        bindings = <
-                                &macro_press &kp LGUI
-                                &macro_press &kp LSHFT
-                                &macro_tap &kp Z
-                                &macro_release &kp LSHFT
-                                &macro_release &kp LGUI
-                        >;
+                        bindings = 
+                                <&macro_press &kp LGUI>,
+                                <&macro_press &kp LSHFT>,
+                                <&macro_tap &kp Z>,
+                                <&macro_release &kp LSHFT>,
+                                <&macro_release &kp LGUI>
+                        ;
                 };
                 close_tab: close_tab {
                         compatible = "zmk,behavior-macro";
                         #binding-cells = <0>;
-                        bindings = <
-                                &macro_press &kp LGUI
-                                &macro_tap &kp W
-                                &macro_release &kp LGUI
-                        >;
+                        bindings = 
+                                <&macro_press &kp LGUI>,
+                                <&macro_tap &kp W>,
+                                <&macro_release &kp LGUI>
+                        ;
                 };
                 u_close_tab: undo_close_tab {
                         compatible = "zmk,behavior-macro";
                         #binding-cells = <0>;
-                        bindings = <
-                                &macro_press &kp LGUI
-                                &macro_press &kp LSHFT
-                                &macro_tap &kp T
-                                &macro_release &kp LSHFT
-                                &macro_release &kp LGUI
-                        >;
+                        bindings = 
+                                <&macro_press &kp LGUI>,
+                                <&macro_press &kp LSHFT>,
+                                <&macro_tap &kp T>,
+                                <&macro_release &kp LSHFT>,
+                                <&macro_release &kp LGUI>
+                        ;
                 };
                 close_app: close_app {
                         compatible = "zmk,behavior-macro";
                         #binding-cells = <0>;
-                        bindings = <
-                                &macro_press &kp LGUI
-                                &macro_tap &kp Q
-                                &macro_release &kp LGUI
-                        >;
+                        bindings = 
+                                <&macro_press &kp LGUI>,
+                                <&macro_tap &kp Q>,
+                                <&macro_release &kp LGUI>
+                        ;
                 };
                 mlu: move_line_up {
                         compatible = "zmk,behavior-macro";
                         #binding-cells = <0>;
-                        bindings = <
-                                &macro_press &kp LALT
-                                &macro_tap &kp UP
-                                &macro_release &kp LALT
-                        >;
+                        bindings = 
+                                <&macro_press &kp LALT>,
+                                <&macro_tap &kp UP>,
+                                <&macro_release &kp LALT>
+                        ;
                 };
                 mld: move_line_down {
                         compatible = "zmk,behavior-macro";
                         #binding-cells = <0>;
-                        bindings = <
-                                &macro_press &kp LALT
-                                &macro_tap &kp DOWN
-                                &macro_release &kp LALT
-                        >;
+                        bindings = 
+                                <&macro_press &kp LALT>,
+                                <&macro_tap &kp DOWN>,
+                                <&macro_release &kp LALT>
+                        ;
                 };
                 mwl: move_word_left {
                         compatible = "zmk,behavior-macro";
                         #binding-cells = <0>;
-                        bindings = <
-                                &macro_press &kp LALT
-                                &macro_tap &kp LEFT
-                                &macro_release &kp LALT
-                        >;
+                        bindings = 
+                                <&macro_press &kp LALT>,
+                                <&macro_tap &kp LEFT>,
+                                <&macro_release &kp LALT>
+                        ;
                 };
                 mwr: move_word_right {
                         compatible = "zmk,behavior-macro";
                         #binding-cells = <0>;
-                        bindings = <
-                                &macro_press &kp LALT
-                                &macro_tap &kp RIGHT
-                                &macro_release &kp LALT
-                        >;
+                        bindings = 
+                                <&macro_press &kp LALT>,
+                                <&macro_tap &kp RIGHT>,
+                                <&macro_release &kp LALT>
+                        ;
                 };
         };
 
