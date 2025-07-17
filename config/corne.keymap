@@ -264,16 +264,6 @@
                         >;
                 };
 
-                right_layer {
-                        display-name = "Right";
-                        bindings = <
-   &kp EXCL  &kp AT   &kp HASH &kp DLLR &kp CARET         &as UNDER MINUS  &kp HOME      &kp UP        &kp END   &trans 
-   &trans    &trans   &trans   &kp PIPE &kp AMPS          &as BSLH SLASH   &kp LEFT      &kp DOWN      &kp RIGHT &as TILDE GRAVE 
-   &trans  &trans  &trans  &trans  &trans           &as RPAR LPAR    &as RBRC LBRC &as RBKT LBKT &as GT LT &kp RSHIFT
-                      &trans   &trans   &trans            &trans           &trans        &trans
-                        >;
-                };
-
                 config_layer {
                         display-name = "Config";
                         bindings = <
