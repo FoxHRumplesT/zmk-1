@@ -41,46 +41,21 @@
                         key-positions = <10 11>;
                         bindings = <&kp TAB>;
                 };
-                combo_undo {
-                        timeout-ms = <50>;
-                        key-positions = <20 21>;
-                        bindings = <&undo>;
-                };
-                combo_redo {
-                        timeout-ms = <50>;
-                        key-positions = <20 11>;
-                        bindings = <&redo>;
-                };
-                combo_copy {
-                        timeout-ms = <50>;
-                        key-positions = <21 22>;
-                        bindings = <&copy>;
-                };
-                combo_cut {
-                        timeout-ms = <50>;
-                        key-positions = <21 23>;
-                        bindings = <&cut>;
-                };
-                combo_paste {
-                        timeout-ms = <50>;
-                        key-positions = <22 23>;
-                        bindings = <&paste>;
-                };
         };
 
         macros {
-                duplicate_line: duplicate_line {
+                d_line: duplicate_line {
                         compatible = "zmk,behavior-macro";
                         #binding-cells = <0>;
                         bindings = <
-                                &macro_press &kp LC(LSHFT)
-                                &macro_press &kp LS(LSHFT)
+                                &macro_press &kp LSHFT
+                                &macro_press &kp LALT
                                 &macro_tap &kp DOWN
-                                &macro_release &kp LC(LSHFT)
-                                &macro_release &kp LS(LSHFT)
+                                &macro_release &kp LSHFT
+                                &macro_release &kp LALT
                         >;
                 };
-                workspace_left: workspace_left {
+                w_left: workspace_left {
                         compatible = "zmk,behavior-macro";
                         #binding-cells = <0>;
                         bindings = <
@@ -89,7 +64,7 @@
                                 &macro_release &kp LCTRL
                         >;
                 };
-                workspace_right: workspace_right {
+                w_right: workspace_right {
                         compatible = "zmk,behavior-macro";
                         #binding-cells = <0>;
                         bindings = <
@@ -98,96 +73,38 @@
                                 &macro_release &kp LCTRL
                         >;
                 };
-                console_log: console_log {
+                clog: console_log {
                         compatible = "zmk,behavior-macro";
                         #binding-cells = <0>;
                         bindings = <
                                 &macro_press &kp LCTRL
-                                &macro_press &kp LC(LSHFT)
+                                &macro_press &kp LALT
                                 &macro_tap &kp L
                                 &macro_release &kp LCTRL
-                                &macro_release &kp LC(LSHFT)
+                                &macro_release &kp LALT
                         >;
                 };
-                browser_back: browser_back {
-                        compatible = "zmk,behavior-macro";
-                        #binding-cells = <0>;
-                        bindings = <
-                                &macro_press &kp LC(LGUI)
-                                &macro_tap &kp LBKT
-                                &macro_release &kp LC(LGUI)
-                        >;
-                };
-                browser_forward: browser_forward {
-                        compatible = "zmk,behavior-macro";
-                        #binding-cells = <0>;
-                        bindings = <
-                                &macro_press &kp LC(LGUI)
-                                &macro_tap &kp RBKT
-                                &macro_release &kp LC(LGUI)
-                        >;
-                };
-                lock_screen: lock_screen {
+                lock_s: lock_screen {
                         compatible = "zmk,behavior-macro";
                         #binding-cells = <0>;
                         bindings = <
                                 &macro_press &kp LCTRL
-                                &macro_press &kp LC(LGUI)
+                                &macro_press &kp LGUI
                                 &macro_tap &kp Q
                                 &macro_release &kp LCTRL
-                                &macro_release &kp LC(LGUI)
+                                &macro_release &kp LGUI
                         >;
                 };
-                search: search {
+                switch_w: switch_window {
                         compatible = "zmk,behavior-macro";
                         #binding-cells = <0>;
                         bindings = <
-                                &macro_press &kp LC(LGUI)
-                                &macro_tap &kp F
-                                &macro_release &kp LC(LGUI)
-                        >;
-                };
-                search_global: search_global {
-                        compatible = "zmk,behavior-macro";
-                        #binding-cells = <0>;
-                        bindings = <
-                                &macro_press &kp LC(LGUI)
-                                &macro_press &kp LS(LSHFT)
-                                &macro_tap &kp F
-                                &macro_release &kp LS(LSHFT)
-                                &macro_release &kp LC(LGUI)
-                        >;
-                };
-                search_file: search_file {
-                        compatible = "zmk,behavior-macro";
-                        #binding-cells = <0>;
-                        bindings = <
-                                &macro_press &kp LC(LGUI)
-                                &macro_tap &kp P
-                                &macro_release &kp LC(LGUI)
-                        >;
-                };
-                search_command: search_command {
-                        compatible = "zmk,behavior-macro";
-                        #binding-cells = <0>;
-                        bindings = <
-                                &macro_press &kp LC(LGUI)
-                                &macro_press &kp LS(LSHFT)
-                                &macro_tap &kp P
-                                &macro_release &kp LS(LSHFT)
-                                &macro_release &kp LC(LGUI)
-                        >;
-                };
-                switch_window: switch_window {
-                        compatible = "zmk,behavior-macro";
-                        #binding-cells = <0>;
-                        bindings = <
-                                &macro_press &kp LC(LGUI)
+                                &macro_press &kp LGUI
                                 &macro_tap &kp TAB
-                                &macro_release &kp LC(LGUI)
+                                &macro_release &kp LGUI
                         >;
                 };
-                switch_tab: switch_tab {
+                switch_t: switch_tab {
                         compatible = "zmk,behavior-macro";
                         #binding-cells = <0>;
                         bindings = <
@@ -252,69 +169,82 @@
                                 &macro_release &kp LGUI
                         >;
                 };
+                // ❌ Close Tab (CMD + W)
                 close_tab: close_tab {
                         compatible = "zmk,behavior-macro";
                         #binding-cells = <0>;
                         bindings = <
-                                &macro_press &kp LC(LGUI)
+                                &macro_press &kp LGUI
                                 &macro_tap &kp W
-                                &macro_release &kp LC(LGUI)
+                                &macro_release &kp LGUI
                         >;
                 };
-                undo_close_tab: undo_close_tab {
+
+                // 🔄 Undo Close Tab (CMD + Shift + T)
+                u_close_tab: undo_close_tab {
                         compatible = "zmk,behavior-macro";
                         #binding-cells = <0>;
                         bindings = <
-                                &macro_press &kp LC(LGUI)
-                                &macro_press &kp LS(LSHFT)
+                                &macro_press &kp LGUI
+                                &macro_press &kp LSHFT
                                 &macro_tap &kp T
-                                &macro_release &kp LS(LSHFT)
-                                &macro_release &kp LC(LGUI)
+                                &macro_release &kp LSHFT
+                                &macro_release &kp LGUI
                         >;
                 };
+
+                // ❌ Close App (CMD + Q)
                 close_app: close_app {
                         compatible = "zmk,behavior-macro";
                         #binding-cells = <0>;
                         bindings = <
-                                &macro_press &kp LC(LGUI)
+                                &macro_press &kp LGUI
                                 &macro_tap &kp Q
-                                &macro_release &kp LC(LGUI)
+                                &macro_release &kp LGUI
                         >;
                 };
-                move_line_up: move_line_up {
+
+                // ⬆ Move Line Up (OPTION + UP)
+                mlu: move_line_up {
                         compatible = "zmk,behavior-macro";
                         #binding-cells = <0>;
                         bindings = <
-                                &macro_press &kp LC(LSHFT)
+                                &macro_press &kp LALT
                                 &macro_tap &kp UP
-                                &macro_release &kp LC(LSHFT)
+                                &macro_release &kp LALT
                         >;
                 };
-                move_line_down: move_line_down {
+
+                // ⬇ Move Line Down (OPTION + DOWN)
+                mld: move_line_down {
                         compatible = "zmk,behavior-macro";
                         #binding-cells = <0>;
                         bindings = <
-                                &macro_press &kp LC(LSHFT)
+                                &macro_press &kp LALT
                                 &macro_tap &kp DOWN
-                                &macro_release &kp LC(LSHFT)
+                                &macro_release &kp LALT
                         >;
                 };
-                move_word_left: move_word_left {
+
+                // ⬅ Move Word Left (OPTION + LEFT)
+                mwl: move_word_left {
                         compatible = "zmk,behavior-macro";
                         #binding-cells = <0>;
                         bindings = <
-                                &macro_press &kp LC(LSHFT)
+                                &macro_press &kp LALT
                                 &macro_tap &kp LEFT
-                                &macro_release &kp LC(LSHFT)
+                                &macro_release &kp LALT
                         >;
                 };
-                move_word_right: move_word_right {
+
+                // ➡ Move Word Right (OPTION + RIGHT)
+                mwr: move_word_right {
                         compatible = "zmk,behavior-macro";
                         #binding-cells = <0>;
                         bindings = <
-                                &macro_press &kp LC(LSHFT)
+                                &macro_press &kp LALT
                                 &macro_tap &kp RIGHT
-                                &macro_release &kp LC(LSHFT)
+                                &macro_release &kp LALT
                         >;
                 };
         };
@@ -335,40 +265,40 @@
                 mac_layer {
                         display-name = "Mac";
                         bindings = <
-   AS(Q) AS(W) AS(E)      AS(R)   AS(T)          AS(Y)     AS(U)   AS(I)          AS(O)            AS(P)
-   AS(A) AS(S) AS(D)      AS(F)   AS(G)          AS(H)     AS(J)   AS(K)          AS(L)            &as DQT SQT
-   AS(Z) AS(X) AS(C)      AS(V)   AS(B)          AS(N)     AS(M)   &as COMMA DOT  &as SEMI COLON   &as SLASH QMARK
-               &kp LGUI   &mo 1   &kp SPACE      AS(RET)   &mo 2   &kp RSHIFT
+   AS(Q) AS(W) AS(E)        AS(R) AS(T)          AS(Y)   AS(U) AS(I)         AS(O)           AS(P)
+   AS(A) AS(S) AS(D)        AS(F) AS(G)          AS(H)   AS(J) AS(K)         AS(L)           &as DQT SQT
+   AS(Z) AS(X) AS(C)        AS(V) AS(B)          AS(N)   AS(M) &as COMMA DOT &as SEMI COLON  &as SLASH QMARK
+               &kp LGUI TAB &mo 1 &kp SPACE      AS(RET) &mo 2 &as RSHIFT BSPC
                         >;
                 };
 
                 left_layer {
                         display-name = "Left";
                         bindings = <
-   &kp EXCL     &kp AT       &kp HASH     &kp DLLR     &kp PRCNT        &kp CARET &kp AMPS  &kp KP_MULTIPLY &kp LPAR  &kp RPAR
-   &kp LEFT     &kp DOWN     &kp UP       &kp RIGHT    &trans           &trans    &kp LEFT  &kp DOWN        &kp UP    &kp RIGHT  
-   &trans       &trans       &trans       &trans       &trans           &trans    &trans    &trans          &trans    &trans 
-                             &kp LGUI     &trans       &kp SPACE        AS(RET)   &trans    &kp RSHIFT
+   &kp PLUS   &kp N7  &kp N8  &kp N9  &kp STAR         &close_app   &switch_w  &mlu    &switch_t  &trans
+   &kp MINUS  &kp N4  &kp N5  &kp N6  &kp SLASH        &close_tab   &mwl       &mld    &mwr       &trans
+   &kp EQUAL  &kp N1  &kp N2  &kp N3  &kp N0           &u_close_tab &w_left    &d_line &w_right   &trans
+                      &trans  &trans  &trans           &trans       &trans     &trans
                         >;
                 };
 
                 right_layer {
                         display-name = "Right";
                         bindings = <
-   AS(N1)    AS(N2)    AS(N3)    AS(N4)    AS(N5)        AS(N6)    AS(N7)    AS(N8)      AS(N9)     AS(N0)
-   AS(MINUS) AS(EQUAL) &kp LBRC  &kp LBKT  &kp LPAR      &kp RPAR  &kp RBKT  &kp RBRC    AS(FSLH)   AS(BSLH)
-   AS(GRAVE) &trans    &trans    AS(COMMA) &kp COLON     &kp SEMI  AS(DOT)   &kp LCTRL   &kp RALT   &trans
-                       &kp LGUI  &trans    &kp SPACE     AS(RET)   &trans    &kp RSHIFT
+   &kp EXCL  &kp AT   &kp HASH &kp DLLR &kp CARET         &as UNDER MINUS  &kp HOME      &kp UP        &kp END   &trans 
+   &trans    &trans   &trans   &kp PIPE &kp AMPS          &as BSLH SLASH   &kp LEFT      &hp DOWN      &kp RIGHT &as TILDE GRAVE 
+   &undo     &cut     &copy    &paste   &redo             &as RPAR LPAR    &as RBRC LBRC &as RBKT LBKT &as GT LT &kp RSHIFT
+                      &trans   &trans   &trans            &trans           &trans        &trans
                         >;
                 };
 
                 config_layer {
                         display-name = "Config";
                         bindings = <
-   &trans       &trans       &trans       &trans       &trans            &trans    &kp C_PREVIOUS   &kp C_PLAY_PAUSE  &kp C_NEXT   &kp C_VOLUME_DOWN
-   &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4      &trans    &trans           &trans            &trans       &kp C_VOLUME_DOWN
-   &bt BT_CLR   &trans       &trans       &trans       &trans            &trans    &trans           &trans            &trans       &kp C_MUTE
-                             &trans       &trans       &trans            &trans    &trans           &trans
+   &lock_s      &trans       &trans       &trans       &trans        &trans      &kp C_PREV &kp C_PP &kp C_NEXT &kp C_VOL_UP
+   &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4  &trans      &trans     &trans   &trans     &kp C_VOL_DOWN
+   &bt BT_CLR   &trans       &trans       &trans       &trans        &kp K_CMENU &trans     &trans   &trans     &kp C_MUTE
+                             &trans       &trans       &trans        &trans      &trans     &trans
                         >;
                 };
         };
