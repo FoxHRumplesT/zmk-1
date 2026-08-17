@@ -2,47 +2,62 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/outputs.h>
-
-
 #define AS(keycode) &as LS(keycode) keycode
-
 / {
         chosen {
                 zmk,physical-layout = &foostan_corne_5col_layout;
         };
-
         conditional_layers {
                 compatible = "zmk,conditional-layers";
-                tri_layer {
+                // Mac group: holding both Left(1) + Right(2) thumb layers gives Config(3).
+                tri_layer_mac {
                         if-layers = <1 2>;
                         then-layer = <3>;
                 };
+                // Windows group: holding both Win-Left(5) + Win-Right(6) also reaches
+                // the same shared Config(3) layer.
+                tri_layer_win {
+                        if-layers = <5 6>;
+                        then-layer = <3>;
+                };
         };
-
         combos {
                 compatible = "zmk,combos";
+                // No "layers" property set below, so these default to ALL layers (-1),
+                // meaning they work the same whether you're in Mac or Windows mode.
                 combo_esc {
+                        // Excluded from layer 7 (Game): Q+W get pressed together
+                        // constantly in games (lean+forward, weapon swap+move).
                         timeout-ms = <50>;
                         key-positions = <0 1>;
+                        layers = <0 1 2 3 4 5 6>;
                         bindings = <&kp ESC>;
                 };
                 combo_backspace {
                         timeout-ms = <50>;
                         key-positions = <8 9>;
+                        layers = <0 1 2 3 4 5 6>;
                         bindings = <&kp BSPC>;
                 };
                 combo_tab {
+                        // Moved off A+S (10 11): "as/ask/gas/was/has" are extremely
+                        // common English bigrams and kept misfiring Tab while typing.
+                        // E+D (2 12) is a vertical (different row) combo, which almost
+                        // never gets hit by accident during normal typing.
+                        // Excluded from layer 7 (Game): E+D are common game keys
+                        // (interact + strafe) pressed together often.
                         timeout-ms = <50>;
-                        key-positions = <10 11>;
+                        key-positions = <2 12>;
+                        layers = <0 1 2 3 4 5 6>;
                         bindings = <&kp TAB>;
                 };
         };
-
         macros {
                 d_line: duplicate_line {
+                        // Shift+Alt+Down - same on Mac and Windows
                         compatible = "zmk,behavior-macro";
                         #binding-cells = <0>;
-                        bindings = 
+                        bindings =
                                 <&macro_press &kp LSHFT>,
                                 <&macro_press &kp LALT>,
                                 <&macro_tap &kp DOWN>,
@@ -51,27 +66,30 @@
                         ;
                 };
                 w_left: workspace_left {
+                        // Mac: Ctrl+Left (Mission Control desktop switch)
                         compatible = "zmk,behavior-macro";
                         #binding-cells = <0>;
-                        bindings = 
+                        bindings =
                                 <&macro_press &kp LCTRL>,
                                 <&macro_tap &kp LEFT>,
                                 <&macro_release &kp LCTRL>
                         ;
                 };
                 w_right: workspace_right {
+                        // Mac: Ctrl+Right (Mission Control desktop switch)
                         compatible = "zmk,behavior-macro";
                         #binding-cells = <0>;
-                        bindings = 
+                        bindings =
                                 <&macro_press &kp LCTRL>,
                                 <&macro_tap &kp RIGHT>,
                                 <&macro_release &kp LCTRL>
                         ;
                 };
                 clog: console_log {
+                        // Ctrl+Alt+L - Turbo Console Log default, same on both OS
                         compatible = "zmk,behavior-macro";
                         #binding-cells = <0>;
-                        bindings = 
+                        bindings =
                                 <&macro_press &kp LCTRL>,
                                 <&macro_press &kp LALT>,
                                 <&macro_tap &kp L>,
@@ -80,9 +98,10 @@
                         ;
                 };
                 lock_s: lock_screen {
+                        // Mac: Ctrl+Cmd+Q
                         compatible = "zmk,behavior-macro";
                         #binding-cells = <0>;
-                        bindings = 
+                        bindings =
                                 <&macro_press &kp LCTRL>,
                                 <&macro_press &kp LGUI>,
                                 <&macro_tap &kp Q>,
@@ -91,63 +110,70 @@
                         ;
                 };
                 switch_w: switch_window {
+                        // Mac: Cmd+Tab
                         compatible = "zmk,behavior-macro";
                         #binding-cells = <0>;
-                        bindings = 
+                        bindings =
                                 <&macro_press &kp LGUI>,
                                 <&macro_tap &kp TAB>,
                                 <&macro_release &kp LGUI>
                         ;
                 };
                 switch_t: switch_tab {
+                        // Ctrl+Tab - same on Mac and Windows
                         compatible = "zmk,behavior-macro";
                         #binding-cells = <0>;
-                        bindings = 
+                        bindings =
                                 <&macro_press &kp LCTRL>,
                                 <&macro_tap &kp TAB>,
                                 <&macro_release &kp LCTRL>
                         ;
                 };
                 copy: copy {
+                        // Mac: Cmd+C
                         compatible = "zmk,behavior-macro";
                         #binding-cells = <0>;
-                        bindings = 
+                        bindings =
                                 <&macro_press &kp LGUI>,
                                 <&macro_tap &kp C>,
                                 <&macro_release &kp LGUI>
                         ;
                 };
                 cut: cut {
+                        // Mac: Cmd+X
                         compatible = "zmk,behavior-macro";
                         #binding-cells = <0>;
-                        bindings = 
+                        bindings =
                                 <&macro_press &kp LGUI>,
                                 <&macro_tap &kp X>,
                                 <&macro_release &kp LGUI>
                         ;
                 };
                 paste: paste {
+                        // Mac: Cmd+V
                         compatible = "zmk,behavior-macro";
                         #binding-cells = <0>;
-                        bindings = 
+                        bindings =
                                 <&macro_press &kp LGUI>,
                                 <&macro_tap &kp V>,
                                 <&macro_release &kp LGUI>
                         ;
                 };
                 undo: undo {
+                        // Mac: Cmd+Z
                         compatible = "zmk,behavior-macro";
                         #binding-cells = <0>;
-                        bindings = 
+                        bindings =
                                 <&macro_press &kp LGUI>,
                                 <&macro_tap &kp Z>,
                                 <&macro_release &kp LGUI>
                         ;
                 };
                 redo: redo {
+                        // Mac: Cmd+Shift+Z
                         compatible = "zmk,behavior-macro";
                         #binding-cells = <0>;
-                        bindings = 
+                        bindings =
                                 <&macro_press &kp LGUI>,
                                 <&macro_press &kp LSHFT>,
                                 <&macro_tap &kp Z>,
@@ -156,18 +182,20 @@
                         ;
                 };
                 close_tab: close_tab {
+                        // Mac: Cmd+W
                         compatible = "zmk,behavior-macro";
                         #binding-cells = <0>;
-                        bindings = 
+                        bindings =
                                 <&macro_press &kp LGUI>,
                                 <&macro_tap &kp W>,
                                 <&macro_release &kp LGUI>
                         ;
                 };
                 u_close_tab: undo_close_tab {
+                        // Mac: Cmd+Shift+T
                         compatible = "zmk,behavior-macro";
                         #binding-cells = <0>;
-                        bindings = 
+                        bindings =
                                 <&macro_press &kp LGUI>,
                                 <&macro_press &kp LSHFT>,
                                 <&macro_tap &kp T>,
@@ -176,52 +204,479 @@
                         ;
                 };
                 close_app: close_app {
+                        // Mac: Cmd+Q
                         compatible = "zmk,behavior-macro";
                         #binding-cells = <0>;
-                        bindings = 
+                        bindings =
                                 <&macro_press &kp LGUI>,
                                 <&macro_tap &kp Q>,
                                 <&macro_release &kp LGUI>
                         ;
                 };
                 mlu: move_line_up {
+                        // Alt+Up - same on Mac and Windows
                         compatible = "zmk,behavior-macro";
                         #binding-cells = <0>;
-                        bindings = 
+                        bindings =
                                 <&macro_press &kp LALT>,
                                 <&macro_tap &kp UP>,
                                 <&macro_release &kp LALT>
                         ;
                 };
                 mld: move_line_down {
+                        // Alt+Down - same on Mac and Windows
                         compatible = "zmk,behavior-macro";
                         #binding-cells = <0>;
-                        bindings = 
+                        bindings =
                                 <&macro_press &kp LALT>,
                                 <&macro_tap &kp DOWN>,
                                 <&macro_release &kp LALT>
                         ;
                 };
                 mwl: move_word_left {
+                        // Mac: Option(Alt)+Left
                         compatible = "zmk,behavior-macro";
                         #binding-cells = <0>;
-                        bindings = 
+                        bindings =
                                 <&macro_press &kp LALT>,
                                 <&macro_tap &kp LEFT>,
                                 <&macro_release &kp LALT>
                         ;
                 };
                 mwr: move_word_right {
+                        // Mac: Option(Alt)+Right
                         compatible = "zmk,behavior-macro";
                         #binding-cells = <0>;
-                        bindings = 
+                        bindings =
                                 <&macro_press &kp LALT>,
                                 <&macro_tap &kp RIGHT>,
                                 <&macro_release &kp LALT>
                         ;
                 };
-        };
 
+                /* ---- VS Code additions (shared where the shortcut is identical) ---- */
+
+                fmt_doc: format_document {
+                        // Shift+Alt+F - same on Mac and Windows
+                        compatible = "zmk,behavior-macro";
+                        #binding-cells = <0>;
+                        bindings =
+                                <&macro_press &kp LSHFT>,
+                                <&macro_press &kp LALT>,
+                                <&macro_tap &kp F>,
+                                <&macro_release &kp LALT>,
+                                <&macro_release &kp LSHFT>
+                        ;
+                };
+                toggle_term: toggle_terminal {
+                        // Ctrl+` - same on Mac and Windows
+                        compatible = "zmk,behavior-macro";
+                        #binding-cells = <0>;
+                        bindings =
+                                <&macro_press &kp LCTRL>,
+                                <&macro_tap &kp GRAVE>,
+                                <&macro_release &kp LCTRL>
+                        ;
+                };
+                cmd_palette: command_palette {
+                        // Mac: Cmd+Shift+P
+                        compatible = "zmk,behavior-macro";
+                        #binding-cells = <0>;
+                        bindings =
+                                <&macro_press &kp LGUI>,
+                                <&macro_press &kp LSHFT>,
+                                <&macro_tap &kp P>,
+                                <&macro_release &kp LSHFT>,
+                                <&macro_release &kp LGUI>
+                        ;
+                };
+                quick_open: quick_open {
+                        // Mac: Cmd+P
+                        compatible = "zmk,behavior-macro";
+                        #binding-cells = <0>;
+                        bindings =
+                                <&macro_press &kp LGUI>,
+                                <&macro_tap &kp P>,
+                                <&macro_release &kp LGUI>
+                        ;
+                };
+                toggle_sb: toggle_sidebar {
+                        // Mac: Cmd+B
+                        compatible = "zmk,behavior-macro";
+                        #binding-cells = <0>;
+                        bindings =
+                                <&macro_press &kp LGUI>,
+                                <&macro_tap &kp B>,
+                                <&macro_release &kp LGUI>
+                        ;
+                };
+                toggle_cm: toggle_comment {
+                        // Mac: Cmd+/
+                        compatible = "zmk,behavior-macro";
+                        #binding-cells = <0>;
+                        bindings =
+                                <&macro_press &kp LGUI>,
+                                <&macro_tap &kp SLASH>,
+                                <&macro_release &kp LGUI>
+                        ;
+                };
+                sel_next: select_next_occurrence {
+                        // Mac: Cmd+D
+                        compatible = "zmk,behavior-macro";
+                        #binding-cells = <0>;
+                        bindings =
+                                <&macro_press &kp LGUI>,
+                                <&macro_tap &kp D>,
+                                <&macro_release &kp LGUI>
+                        ;
+                };
+                sel_all: select_all_occurrences {
+                        // Mac: Cmd+Shift+L
+                        compatible = "zmk,behavior-macro";
+                        #binding-cells = <0>;
+                        bindings =
+                                <&macro_press &kp LGUI>,
+                                <&macro_press &kp LSHFT>,
+                                <&macro_tap &kp L>,
+                                <&macro_release &kp LSHFT>,
+                                <&macro_release &kp LGUI>
+                        ;
+                };
+                find_files: find_in_files {
+                        // Mac: Cmd+Shift+F
+                        compatible = "zmk,behavior-macro";
+                        #binding-cells = <0>;
+                        bindings =
+                                <&macro_press &kp LGUI>,
+                                <&macro_press &kp LSHFT>,
+                                <&macro_tap &kp F>,
+                                <&macro_release &kp LSHFT>,
+                                <&macro_release &kp LGUI>
+                        ;
+                };
+                quick_fix: quick_fix {
+                        // Mac: Cmd+.
+                        compatible = "zmk,behavior-macro";
+                        #binding-cells = <0>;
+                        bindings =
+                                <&macro_press &kp LGUI>,
+                                <&macro_tap &kp DOT>,
+                                <&macro_release &kp LGUI>
+                        ;
+                };
+                go_back: go_back {
+                        // Mac: Ctrl+-  (Alt+Left is taken by word-nav on Mac)
+                        compatible = "zmk,behavior-macro";
+                        #binding-cells = <0>;
+                        bindings =
+                                <&macro_press &kp LCTRL>,
+                                <&macro_tap &kp MINUS>,
+                                <&macro_release &kp LCTRL>
+                        ;
+                };
+                go_fwd: go_forward {
+                        // Mac: Ctrl+Shift+-
+                        compatible = "zmk,behavior-macro";
+                        #binding-cells = <0>;
+                        bindings =
+                                <&macro_press &kp LCTRL>,
+                                <&macro_press &kp LSHFT>,
+                                <&macro_tap &kp MINUS>,
+                                <&macro_release &kp LSHFT>,
+                                <&macro_release &kp LCTRL>
+                        ;
+                };
+                del_word: delete_word {
+                        // Mac: Option+Backspace (delete whole word left)
+                        compatible = "zmk,behavior-macro";
+                        #binding-cells = <0>;
+                        bindings =
+                                <&macro_press &kp LALT>,
+                                <&macro_tap &kp BSPC>,
+                                <&macro_release &kp LALT>
+                        ;
+                };
+
+                /* ---- Windows equivalents ----
+                 * Prefixed win_*. Same idea as the Mac macros above, but with the
+                 * modifier VS Code/Windows actually expects. A few use a different
+                 * key entirely (not just a Cmd-to-Ctrl swap) - noted per macro.
+                 */
+
+                win_close_app: win_close_app {
+                        // Windows: Alt+F4 (different key, not just modifier swap)
+                        compatible = "zmk,behavior-macro";
+                        #binding-cells = <0>;
+                        bindings =
+                                <&macro_press &kp LALT>,
+                                <&macro_tap &kp F4>,
+                                <&macro_release &kp LALT>
+                        ;
+                };
+                win_switch_w: win_switch_window {
+                        // Windows: Alt+Tab
+                        compatible = "zmk,behavior-macro";
+                        #binding-cells = <0>;
+                        bindings =
+                                <&macro_press &kp LALT>,
+                                <&macro_tap &kp TAB>,
+                                <&macro_release &kp LALT>
+                        ;
+                };
+                win_close_tab: win_close_tab {
+                        // Windows: Ctrl+W
+                        compatible = "zmk,behavior-macro";
+                        #binding-cells = <0>;
+                        bindings =
+                                <&macro_press &kp LCTRL>,
+                                <&macro_tap &kp W>,
+                                <&macro_release &kp LCTRL>
+                        ;
+                };
+                win_u_close_tab: win_undo_close_tab {
+                        // Windows: Ctrl+Shift+T
+                        compatible = "zmk,behavior-macro";
+                        #binding-cells = <0>;
+                        bindings =
+                                <&macro_press &kp LCTRL>,
+                                <&macro_press &kp LSHFT>,
+                                <&macro_tap &kp T>,
+                                <&macro_release &kp LSHFT>,
+                                <&macro_release &kp LCTRL>
+                        ;
+                };
+                win_mwl: win_move_word_left {
+                        // Windows: Ctrl+Left (not Alt - Alt is used for line move here)
+                        compatible = "zmk,behavior-macro";
+                        #binding-cells = <0>;
+                        bindings =
+                                <&macro_press &kp LCTRL>,
+                                <&macro_tap &kp LEFT>,
+                                <&macro_release &kp LCTRL>
+                        ;
+                };
+                win_mwr: win_move_word_right {
+                        // Windows: Ctrl+Right
+                        compatible = "zmk,behavior-macro";
+                        #binding-cells = <0>;
+                        bindings =
+                                <&macro_press &kp LCTRL>,
+                                <&macro_tap &kp RIGHT>,
+                                <&macro_release &kp LCTRL>
+                        ;
+                };
+                win_w_left: win_workspace_left {
+                        // Windows virtual desktop switch: Ctrl+Win+Left
+                        compatible = "zmk,behavior-macro";
+                        #binding-cells = <0>;
+                        bindings =
+                                <&macro_press &kp LCTRL>,
+                                <&macro_press &kp LGUI>,
+                                <&macro_tap &kp LEFT>,
+                                <&macro_release &kp LGUI>,
+                                <&macro_release &kp LCTRL>
+                        ;
+                };
+                win_w_right: win_workspace_right {
+                        // Windows virtual desktop switch: Ctrl+Win+Right
+                        compatible = "zmk,behavior-macro";
+                        #binding-cells = <0>;
+                        bindings =
+                                <&macro_press &kp LCTRL>,
+                                <&macro_press &kp LGUI>,
+                                <&macro_tap &kp RIGHT>,
+                                <&macro_release &kp LGUI>,
+                                <&macro_release &kp LCTRL>
+                        ;
+                };
+                win_undo: win_undo {
+                        compatible = "zmk,behavior-macro";
+                        #binding-cells = <0>;
+                        bindings =
+                                <&macro_press &kp LCTRL>,
+                                <&macro_tap &kp Z>,
+                                <&macro_release &kp LCTRL>
+                        ;
+                };
+                win_redo: win_redo {
+                        // Windows VS Code default redo is Ctrl+Y (not Ctrl+Shift+Z)
+                        compatible = "zmk,behavior-macro";
+                        #binding-cells = <0>;
+                        bindings =
+                                <&macro_press &kp LCTRL>,
+                                <&macro_tap &kp Y>,
+                                <&macro_release &kp LCTRL>
+                        ;
+                };
+                win_cut: win_cut {
+                        compatible = "zmk,behavior-macro";
+                        #binding-cells = <0>;
+                        bindings =
+                                <&macro_press &kp LCTRL>,
+                                <&macro_tap &kp X>,
+                                <&macro_release &kp LCTRL>
+                        ;
+                };
+                win_copy: win_copy {
+                        compatible = "zmk,behavior-macro";
+                        #binding-cells = <0>;
+                        bindings =
+                                <&macro_press &kp LCTRL>,
+                                <&macro_tap &kp C>,
+                                <&macro_release &kp LCTRL>
+                        ;
+                };
+                win_paste: win_paste {
+                        compatible = "zmk,behavior-macro";
+                        #binding-cells = <0>;
+                        bindings =
+                                <&macro_press &kp LCTRL>,
+                                <&macro_tap &kp V>,
+                                <&macro_release &kp LCTRL>
+                        ;
+                };
+                win_cmd_palette: win_command_palette {
+                        compatible = "zmk,behavior-macro";
+                        #binding-cells = <0>;
+                        bindings =
+                                <&macro_press &kp LCTRL>,
+                                <&macro_press &kp LSHFT>,
+                                <&macro_tap &kp P>,
+                                <&macro_release &kp LSHFT>,
+                                <&macro_release &kp LCTRL>
+                        ;
+                };
+                win_quick_open: win_quick_open {
+                        compatible = "zmk,behavior-macro";
+                        #binding-cells = <0>;
+                        bindings =
+                                <&macro_press &kp LCTRL>,
+                                <&macro_tap &kp P>,
+                                <&macro_release &kp LCTRL>
+                        ;
+                };
+                win_toggle_sb: win_toggle_sidebar {
+                        compatible = "zmk,behavior-macro";
+                        #binding-cells = <0>;
+                        bindings =
+                                <&macro_press &kp LCTRL>,
+                                <&macro_tap &kp B>,
+                                <&macro_release &kp LCTRL>
+                        ;
+                };
+                win_toggle_cm: win_toggle_comment {
+                        compatible = "zmk,behavior-macro";
+                        #binding-cells = <0>;
+                        bindings =
+                                <&macro_press &kp LCTRL>,
+                                <&macro_tap &kp SLASH>,
+                                <&macro_release &kp LCTRL>
+                        ;
+                };
+                win_sel_next: win_select_next_occurrence {
+                        compatible = "zmk,behavior-macro";
+                        #binding-cells = <0>;
+                        bindings =
+                                <&macro_press &kp LCTRL>,
+                                <&macro_tap &kp D>,
+                                <&macro_release &kp LCTRL>
+                        ;
+                };
+                win_sel_all: win_select_all_occurrences {
+                        compatible = "zmk,behavior-macro";
+                        #binding-cells = <0>;
+                        bindings =
+                                <&macro_press &kp LCTRL>,
+                                <&macro_press &kp LSHFT>,
+                                <&macro_tap &kp L>,
+                                <&macro_release &kp LSHFT>,
+                                <&macro_release &kp LCTRL>
+                        ;
+                };
+                win_find_files: win_find_in_files {
+                        compatible = "zmk,behavior-macro";
+                        #binding-cells = <0>;
+                        bindings =
+                                <&macro_press &kp LCTRL>,
+                                <&macro_press &kp LSHFT>,
+                                <&macro_tap &kp F>,
+                                <&macro_release &kp LSHFT>,
+                                <&macro_release &kp LCTRL>
+                        ;
+                };
+                win_quick_fix: win_quick_fix {
+                        compatible = "zmk,behavior-macro";
+                        #binding-cells = <0>;
+                        bindings =
+                                <&macro_press &kp LCTRL>,
+                                <&macro_tap &kp DOT>,
+                                <&macro_release &kp LCTRL>
+                        ;
+                };
+                win_go_back: win_go_back {
+                        // Windows VS Code default: Alt+Left (different key than Mac)
+                        compatible = "zmk,behavior-macro";
+                        #binding-cells = <0>;
+                        bindings =
+                                <&macro_press &kp LALT>,
+                                <&macro_tap &kp LEFT>,
+                                <&macro_release &kp LALT>
+                        ;
+                };
+                win_go_fwd: win_go_forward {
+                        // Windows VS Code default: Alt+Right
+                        compatible = "zmk,behavior-macro";
+                        #binding-cells = <0>;
+                        bindings =
+                                <&macro_press &kp LALT>,
+                                <&macro_tap &kp RIGHT>,
+                                <&macro_release &kp LALT>
+                        ;
+                };
+                win_del_word: win_delete_word {
+                        // Windows: Ctrl+Backspace (delete whole word left)
+                        compatible = "zmk,behavior-macro";
+                        #binding-cells = <0>;
+                        bindings =
+                                <&macro_press &kp LCTRL>,
+                                <&macro_tap &kp BSPC>,
+                                <&macro_release &kp LCTRL>
+                        ;
+                };
+                win_lock: win_lock_screen {
+                        // Windows: Win+L
+                        compatible = "zmk,behavior-macro";
+                        #binding-cells = <0>;
+                        bindings =
+                                <&macro_press &kp LGUI>,
+                                <&macro_tap &kp L>,
+                                <&macro_release &kp LGUI>
+                        ;
+                };
+
+                /* ---- Mode toggle ----
+                 * Switches which BT profile you're on AND which base layer/keymap
+                 * is active, so the same physical keys behave correctly for
+                 * whichever computer you're paired with.
+                 * Convention: BT profile 0 = Mac, profile 1 = Windows.
+                 */
+                mac_mode: switch_to_mac {
+                        compatible = "zmk,behavior-macro";
+                        #binding-cells = <0>;
+                        bindings =
+                                <&macro_tap &bt BT_SEL 0>,
+                                <&to 0>
+                        ;
+                };
+                win_mode: switch_to_windows {
+                        compatible = "zmk,behavior-macro";
+                        #binding-cells = <0>;
+                        bindings =
+                                <&macro_tap &bt BT_SEL 1>,
+                                <&to 4>
+                        ;
+                };
+        };
         behaviors {
                 as: auto_shift {
                         compatible = "zmk,behavior-hold-tap";
@@ -229,49 +684,96 @@
                         tapping-term-ms = <200>;
                         quick-tap-ms = <0>;
                         flavor = "tap-preferred";
-                        bindings = <&kp>, <&kp>;        
+                        bindings = <&kp>, <&kp>;
                 };
         };
         keymap {
                 compatible = "zmk,keymap";
-
                 mac_layer {
                         display-name = "Mac";
+                        // Thumbs: Gui/Tab | Left layer | Space || Ctrl/Return | Right layer | Shift/Bspc
+                        // Gui + Ctrl + Shift are all composable thumb-mods, held together with
+                        // any letter on this layer, e.g. hold Gui-thumb + tap S = Cmd+S.
                         bindings = <
    AS(Q) AS(W) AS(E)        AS(R) AS(T)          AS(Y)   AS(U) AS(I)         AS(O)           AS(P)
    AS(A) AS(S) AS(D)        AS(F) AS(G)          AS(H)   AS(J) AS(K)         AS(L)           &as DQT SQT
    AS(Z) AS(X) AS(C)        AS(V) AS(B)          AS(N)   AS(M) &as COMMA DOT &as SEMI COLON  &as SLASH QMARK
-               &as LGUI TAB &mo 1 &kp SPACE      AS(RET) &mo 2 &as RSHIFT BSPC
+               &as LGUI TAB &mo 1 &kp SPACE      &as LCTRL RET &mo 2 &as RSHIFT BSPC
                         >;
                 };
-
                 left_layer {
                         display-name = "Left";
                         bindings = <
-   &kp PLUS   &kp N7  &kp N8  &kp N9  &kp STAR         &close_app   &switch_w  &mlu    &switch_t  &trans
-   &kp MINUS  &kp N4  &kp N5  &kp N6  &kp SLASH        &close_tab   &mwl       &mld    &mwr       &trans
-   &kp EQUAL  &kp N1  &kp N2  &kp N3  &kp N0           &u_close_tab &w_left    &d_line &w_right   &trans
-                      &trans  &trans  &trans           &trans       &trans     &trans
+   &kp PLUS   &kp N7  &kp N8  &kp N9  &kp STAR         &close_app   &switch_w  &mlu    &switch_t  &toggle_term
+   &kp MINUS  &kp N4  &kp N5  &kp N6  &kp SLASH        &close_tab   &mwl       &mld    &mwr       &toggle_sb
+   &kp EQUAL  &kp N1  &kp N2  &kp N3  &kp N0           &u_close_tab &w_left    &d_line &w_right   &sel_all
+              &kp F2  &trans  &kp F12                  &cmd_palette &trans     &quick_open
                         >;
                 };
-
                 right_layer {
                         display-name = "Right";
                         bindings = <
-   &kp EXCL      &kp AT        &kp HASH      &kp DLLR  &kp CARET     &as UNDER MINUS  &kp HOME      &kp UP        &kp END   &trans 
-   &as RPAR LPAR &as RBRC LBRC &as RBKT LBKT &as GT LT &kp AMPS      &as BSLH SLASH   &kp LEFT      &kp DOWN      &kp RIGHT &as TILDE GRAVE 
-   &undo         &cut          &copy         &paste    &redo         &trans           &trans        &trans        &kp PIPE  &kp RSHIFT
-                               &trans        &trans    &trans        &trans           &trans        &trans
+   &kp EXCL      &kp AT        &kp HASH      &kp DLLR  &kp CARET     &as UNDER MINUS  &kp HOME      &kp UP        &kp END   &toggle_cm
+   &as RPAR LPAR &as RBRC LBRC &as RBKT LBKT &as GT LT &kp AMPS      &as BSLH SLASH   &kp LEFT      &kp DOWN      &kp RIGHT &as TILDE GRAVE
+   &undo         &cut          &copy         &paste    &redo         &sel_next        &fmt_doc      &find_files   &kp PIPE  &kp RSHIFT
+                 &quick_fix    &trans        &go_back                &go_fwd          &trans        &del_word
                         >;
                 };
-
                 config_layer {
                         display-name = "Config";
+                        // Row 1 left side: Mac lock | Win lock | Mac mode | Win mode | Game toggle
                         bindings = <
-   &lock_s       &trans        &trans        &trans        &trans         &trans      &kp C_PREV &kp C_PP &kp C_NEXT &kp C_VOL_UP
+   &lock_s       &win_lock     &mac_mode     &win_mode     &tog 7         &trans      &kp C_PREV &kp C_PP &kp C_NEXT &kp C_VOL_UP
    &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4   &trans      &trans     &trans   &trans     &kp C_VOL_DN
-   &bt BT_CLR    &out OUT_TOG  &trans        &trans        &trans         &trans      &trans     &trans   &trans     &kp C_MUTE
+   &bt BT_CLR    &out OUT_TOG  &bootloader   &sys_reset    &trans         &trans      &trans     &trans   &trans     &kp C_MUTE
                                &trans        &trans        &trans         &trans      &trans     &trans
+                        >;
+                };
+                win_layer {
+                        display-name = "Windows";
+                        // Same QWERTY + auto-shift as Mac. Only the thumb mods differ:
+                        // Ctrl is now the primary hold (left thumb), Win/Gui is secondary
+                        // (right-inner thumb) for things like Win+L, Win+D.
+                        bindings = <
+   AS(Q) AS(W) AS(E)        AS(R) AS(T)          AS(Y)   AS(U) AS(I)         AS(O)           AS(P)
+   AS(A) AS(S) AS(D)        AS(F) AS(G)          AS(H)   AS(J) AS(K)         AS(L)           &as DQT SQT
+   AS(Z) AS(X) AS(C)        AS(V) AS(B)          AS(N)   AS(M) &as COMMA DOT &as SEMI COLON  &as SLASH QMARK
+               &as LCTRL TAB &mo 5 &kp SPACE     &as LGUI RET &mo 6 &as RSHIFT BSPC
+                        >;
+                };
+                win_left {
+                        display-name = "Win Left";
+                        bindings = <
+   &kp PLUS   &kp N7  &kp N8  &kp N9  &kp STAR         &win_close_app   &win_switch_w  &mlu    &switch_t  &toggle_term
+   &kp MINUS  &kp N4  &kp N5  &kp N6  &kp SLASH        &win_close_tab   &win_mwl       &mld    &win_mwr   &win_toggle_sb
+   &kp EQUAL  &kp N1  &kp N2  &kp N3  &kp N0           &win_u_close_tab &win_w_left    &d_line &win_w_right &win_sel_all
+              &kp F2  &trans  &kp F12                  &win_cmd_palette &trans         &win_quick_open
+                        >;
+                };
+                win_right {
+                        display-name = "Win Right";
+                        bindings = <
+   &kp EXCL      &kp AT        &kp HASH      &kp DLLR  &kp CARET     &as UNDER MINUS  &kp HOME      &kp UP        &kp END   &win_toggle_cm
+   &as RPAR LPAR &as RBRC LBRC &as RBKT LBKT &as GT LT &kp AMPS      &as BSLH SLASH   &kp LEFT      &kp DOWN      &kp RIGHT &as TILDE GRAVE
+   &win_undo     &win_cut      &win_copy     &win_paste &win_redo    &win_sel_next    &fmt_doc      &win_find_files &kp PIPE &kp RSHIFT
+                 &win_quick_fix &trans       &win_go_back            &win_go_fwd      &trans        &win_del_word
+                        >;
+                };
+                game_layer {
+                        display-name = "Game";
+                        // Everything here is a plain &kp - no hold-tap, no auto-shift,
+                        // no delay. Holding a key just holds that key, which is what
+                        // WASD-style movement and held modifiers (sprint/crouch) need.
+                        // Toggle in/out with &tog 7 (Config layer). Combos are disabled
+                        // on this layer (see combos block) so game keys never misfire
+                        // into Esc/Tab. I/J/K/L double as arrows for menu nav so you
+                        // don't have to hold a layer mid-game; Esc moved to the pinky
+                        // corner since the Q+W combo is off here.
+                        bindings = <
+   &kp Q &kp W &kp E   &kp R    &kp T        &kp Y &kp U    &kp UP   &kp O    &kp P
+   &kp A &kp S &kp D   &kp F    &kp G        &kp H &kp LEFT &kp DOWN &kp RIGHT &kp ESC
+   &kp Z &kp X &kp C   &kp V    &kp B        &kp N &kp M    &kp COMMA &kp DOT &kp SLASH
+              &kp TAB  &mo 1    &kp SPACE    &kp LCTRL &mo 2 &kp LSHFT
                         >;
                 };
         };
